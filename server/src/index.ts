@@ -7,6 +7,8 @@ import orderRouter from "src/order/order.router";
 import cors from "cors";
 const app = express();
 
+app.use(express.static('build/client'))
+
 app.use(cors());
 
 app.use(express.json());
@@ -14,6 +16,7 @@ app.use(express.json());
 import swaggerUi from "swagger-ui-express";
 
 import swaggerDocument from "../swagger.json";
+import path from "path";
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -21,6 +24,9 @@ app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRouter);
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, '../build/client')});
+});
 
 app.all("*", (req, res) => {
   return res.status(404).json({ message: "route not found" });

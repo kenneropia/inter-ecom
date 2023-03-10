@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import db from "../db";
 
 const isAuth = async (req: Request, res: Response, next: NextFunction) => {
+
+  
   if (!req.headers.authorization) {
     return res.status(401).json({ message: "UNAUTHORIZED" });
   }

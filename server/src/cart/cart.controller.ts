@@ -3,7 +3,7 @@ import db from "src/db";
 
 const getAllCartItems = async (req: Request, res: Response) => {
   const cart = await db.cartItem.findMany({
-    where: { creatorId: req.user?.id },
+    where: { creatorId: req.user?.id, orderId:null },
     include: { product: true },
   });
   return res.json({ cart });

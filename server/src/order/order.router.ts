@@ -8,8 +8,6 @@ const orderRouter = Router();
 
 orderRouter.post(
   "/createOrder",
-  isAuth,
-  validateRequestBody(createOrderSchema),
   createOrder
 );
 

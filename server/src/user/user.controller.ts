@@ -52,7 +52,7 @@ const login = async (
 
   const token = createToken({ email: user.email, id: user.id });
   user.password = null;
-  res.json({ ...user, token, id: null });
+  res.json({ ...user, token,  });
 };
 
 const profile = async (req: Request, res: Response) => {
