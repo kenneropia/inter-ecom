@@ -10,11 +10,12 @@ function Login() {
   });
   const [errorMessage, setErrorMessage] = useState(false);
   const auth = useAuth();
+const navigate = useNavigate()
 
   useEffect(() => {
     console.log(auth.getUser());
     if (auth.getUser()) {
-      location.assign("/");
+      navigate('/');
     }
   }, []);
 

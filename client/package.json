@@ -28,8 +28,7 @@
     "setup": "yarn install",
     "dev": "vite",
     "test": "cross-env NODE_ENV=test jest",
-    "build:prod-debug": "webpack --env.prod",
-    "postbuild:prod-debug": "yarn copy",
+  
     "precopy": "rimraf ../server/build/client && mkdir -p -v ../server/build/client",
     "copy": "cp -v dist/* ../server/build/client/",
     "prettier": "prettier --no-config --write ./dist/*.html",

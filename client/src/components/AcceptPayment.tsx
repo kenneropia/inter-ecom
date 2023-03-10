@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PaystackButton } from "react-paystack";
 import useAuth from "../hooks/useAuth";
 
@@ -6,9 +5,8 @@ export default function AcceptPayment(props: { amount: number }) {
   const auth = useAuth();
   const publicKey = "pk_test_081b9ebd3530a2b69ef852c746d5fc779bf62c10";
   const amount = props.amount * 100;
-  const [email, setEmail] = useState(auth.getUser().email as string);
-  const [name, setName] = useState(auth.getUser().name as string);
-  const [phone, setPhone] = useState("08103622797");
+  
+console.log(auth.getUser().id);
 
   const componentProps = {
     email: auth.getUser().email as string,
