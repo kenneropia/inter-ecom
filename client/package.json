@@ -30,7 +30,7 @@
     "test": "cross-env NODE_ENV=test jest",
   
     "precopy": "rimraf ../server/build/client && mkdir -p -v ../server/build/client",
-    "copy": "cp -v dist/* ../server/build/client/",
+    "copy": "cp -v -r dist/* ../server/build/client/",
     "prettier": "prettier --no-config --write ./dist/*.html",
     "build:jamstack": "webpack --env prod --env jamstack",
     "postbuild:jamstack": "yarn postbuild:prod",
