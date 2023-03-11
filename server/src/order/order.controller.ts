@@ -3,11 +3,7 @@ import db from "src/db";
 const secret = process.env.PAYSTACK_PUBLIC_KEY;
 
 const createOrder = async (req: Request, res: Response) => {
-  console.log("user", req.body.data.metadata.creatorId);
 
-  console.log("body:", req.body);
-
-  console.log("headers:", req.headers);
 
   try {
     const cartItems = await db.cartItem.findMany({
