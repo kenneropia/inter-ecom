@@ -16,7 +16,6 @@ export type User = {
   email: string;
   id: string;
   token: string;
-  password: string;
 };
 const loginUser = async (loginData: { email: string; name: string }) => {
   const {
