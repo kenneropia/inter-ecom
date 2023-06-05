@@ -15,3 +15,14 @@ export interface CartItem {
 }
 
 export type CartList = CartItem[];
+export interface IOrder {
+  id: string;
+  price: number;
+  quantityLeft: number;
+  _count: {
+    cartItems: number;
+  };
+  successful: boolean;
+}
+
+export type IOrderList = IOrder[];

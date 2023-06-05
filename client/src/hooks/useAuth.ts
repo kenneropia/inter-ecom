@@ -8,7 +8,7 @@ import {
 function useAuth() {
   const [user, setUser] = useState({});
   // Login updates the user data with a name parameter
-  const login = async (loginForm: { password: string; email: string }) => {
+  const login = async (loginForm: { email: string; name: string }) => {
     const user = await userLogin(loginForm);
     setUser(user);
   };

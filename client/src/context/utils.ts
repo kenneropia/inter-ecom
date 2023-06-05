@@ -18,11 +18,10 @@ export type User = {
   token: string;
   password: string;
 };
-const loginUser = async (loginData: { email: string; password: string }) => {
+const loginUser = async (loginData: { email: string; name: string }) => {
   const {
     data: { name, id, email, token },
   } = await API.post("/user/login", loginData);
-  console.log(name);
   let user = {
     name: name,
     id,
@@ -42,7 +41,7 @@ export const signup = async (signinData: User) => {
   return data;
 };
 
-export const login = async (loginData: { email: string; password: string }) => {
+export const login = async (loginData: { email: string; name: string }) => {
   let user = await loginUser(loginData);
   return user;
 };

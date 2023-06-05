@@ -5,6 +5,7 @@ import Navbar from "../components/NavBar";
 import RequireAuth from "../components/RequireAuth";
 import { ProductsLst } from "../pages/ProductIst";
 import Cart from "../pages/Cart";
+import { OrderList } from "../pages/OrderList";
 
 export const AppRoutes = () => {
   return (
@@ -24,6 +25,14 @@ export const AppRoutes = () => {
           element={
             <RequireAuth>
               <Cart />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <RequireAuth>
+              <OrderList />
             </RequireAuth>
           }
         />

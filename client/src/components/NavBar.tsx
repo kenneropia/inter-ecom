@@ -6,17 +6,23 @@ function Navbar() {
   const { getUser, logout } = useAuth();
   const navigate = useNavigate();
   return (
-    <nav className="bg-gray-200 py-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex md:flex-row flex-col justify-center items-center md:justify-between">
+    <nav className="py-4 bg-gray-200">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center md:flex-row md:justify-between">
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl font-bold text-blue-700">
               Ecom
             </Link>
           </div>
-          <div className="flex md:mt-0 mt-2 justify-center md:block">
+          <div className="flex justify-center mt-2 md:mt-0 md:block">
             {getUser() ? (
-              <div className="md:ml-10 flex items-baseline space-x-4">
+              <div className="flex items-baseline space-x-4 md:ml-10">
+                <Link
+                  to="/order"
+                  className="px-3 py-2 text-sm font-medium text-blue-700"
+                >
+                  Orders
+                </Link>
                 <Link
                   to="/"
                   className="px-3 py-2 text-sm font-medium text-blue-700"
@@ -25,7 +31,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="/cart"
-                  className="px-3 py-2 text-sm font-medium  text-blue-700"
+                  className="px-3 py-2 text-sm font-medium text-blue-700"
                 >
                   Cart
                 </Link>

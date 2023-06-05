@@ -1,50 +1,65 @@
-import { PaystackButton } from "react-paystack";
+import { InterswitchPay } from "react-interswitch";
 import useAuth from "../hooks/useAuth";
+// import { IInterswitch } from "react-interswitch/dist/libs/interface";
+import { nanoid } from "nanoid";
+import API from "../api";
 
 export default function AcceptPayment(props: { amount: number }) {
   const auth = useAuth();
   const publicKey = "pk_test_081b9ebd3530a2b69ef852c746d5fc779bf62c10";
-  const amount = props.amount * 100;
-  
-console.log(auth.getUser().id);
-
+  const amount = props.amount * 100 + "";
+  const tx_id = nanoid();
+  const id = auth.getUser().id;
   const componentProps = {
-    email: auth.getUser().email as string,
-    name: auth.getUser().name as string,
-    amount,
-    metadata: {
-      creatorId: auth.getUser().id,
-      email: auth.getUser().email as string,
-      name: auth.getUser().name as string,
+    site_redirect_url: location.origin,
+    merchant_code: "MX6072",
+    pay_item_id: "9405967",
+    txn_ref: "sample_txn_ref" + tx_id,
+    amount: 10000,
+    currency: 566, // ISO 4217 numeric code of the currency used
+    onComplete: async (res) => {
+      try {
+        const randomEvent =
+          Math.random() < 0.5
+            ? "INVOICE.TRANSACTION_SUCCESSFUL"
+            : "INVOICE.TRANSACTION_FAILURE";
 
-      custom_fields: [
-        {
-          display_name: "email",
-          variable_name: "email",
-          value: auth.getUser().email as string,
-        },
-        {
-          display_name: "name",
-          variable_name: "name",
-          value: auth.getUser().name as string,
-        },
-        {
-          display_name: "creatorId",
-          variable_name: "creatorId",
-          value: auth.getUser().id as string,
-        },
-      ],
+        const req = {
+          body: {
+            event: randomEvent,
+            data: {
+              metadata: {
+                creatorId: id,
+              },
+            },
+          },
+        };
+
+        // Call your createOrder API endpoint with req object
+        const response = await API.post("/createOrder", req);
+        console.log("response");
+        // Handle the response accordingly
+
+        console.log(`Order created with event: ${randomEvent}`);
+      } catch (err) {
+        console.log(err);
+      }
+      console.log(res);
     },
-    publicKey,
-    text: "Pay Now",
-    onSuccess: () =>
-      alert("Thanks for doing business with us! Come back soon!!"),
-    onClose: () => alert("Wait! Don't leave :("),
+    mode: "TEST",
   };
-
+  console.log(componentProps);
   return (
-    <div className="App">
-      <PaystackButton {...componentProps} />
+    <div className="w-full">
+      <button
+        className="w-full h-10 text-white bg-green-500 sm:w-5/12"
+        onClick={() => {
+          window.webpayCheckout(componentProps);
+        }}
+      >
+        Pay Now
+      </button>
+      {/* <InterswitchPay {...componentProps} /> */}
     </div>
   );
 }

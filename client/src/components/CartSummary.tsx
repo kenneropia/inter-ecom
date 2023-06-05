@@ -11,12 +11,12 @@ function CartSummary(props: { cartItems: CartList }) {
   );
 
   return (
-    <div className="bg-gray-100 p-4 rounded-md">
+    <div className="w-full p-4 bg-gray-100 rounded-md">
       <span className=" text-md">Cart Summary</span>
       <div className="flex flex-col justify-between mb-2">
         <span className="text-md">{totalItems} item(s)</span>
         <span className="text-gray-500 text-md">
-          Total Price: ${totalPrice}
+          Total Price: ₦{totalPrice}
         </span>
       </div>
       <AcceptPayment amount={totalPrice} />
