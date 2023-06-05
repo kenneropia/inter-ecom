@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx tsx watch src/index.ts",
     "start": "npx tsx src/index.ts",
-    "seed": "tsx src/utils/seed.ts"
+    "seed": "npx prisma migrate dev && npx tsx src/utils/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^4.10.1",

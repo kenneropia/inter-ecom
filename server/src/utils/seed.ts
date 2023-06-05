@@ -84,9 +84,9 @@ const run = async () => {
     data: {
       email: "aaron@kenny.com",
       name: "aaron kenny",
-      password: "12345678",
     },
   });
+  console.log("done");
 };
 
 run();
